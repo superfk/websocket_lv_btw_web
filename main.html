@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            html {
+                width: 100%;
+                height: 100%;
+            }
+            body {
+                width: 100%;
+                height: 100%;
+            }
+            h1{
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                font-size: 50px;
+                max-width: 500px;
+                margin: auto;
+                justify-content: center;
+                vertical-align: middle;
+
+            }
+
+        </style>
+
+    </head>
+
+    <body>
+        <h1 id='msg'>Hello world</h1>
+
+
+    </body>
+
+    <script>
+
+        websocket = new WebSocket("ws://127.0.0.1:6789/");
+            
+            websocket.onmessage = function (event) {
+                
+                document.getElementById('msg').innerHTML = event.data;
+                let msg = JSON.stringify({msg: event.data})
+                websocket.send('from web page' + msg)
+            };
+    
+    </script>
+
+</html>
