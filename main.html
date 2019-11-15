@@ -26,6 +26,7 @@
 
     <body>
         <h1 id='msg'>Hello world</h1>
+        <img id='image'>
 
 
     </body>
@@ -35,10 +36,22 @@
         websocket = new WebSocket("ws://127.0.0.1:6789/");
             
             websocket.onmessage = function (event) {
+                let dataset = JSON.parse(event.data);
+                console.log(dataset)
+                if(dataset.state === 'image'){
+                    var image = document.getElementById('image');
+                    image.src = 'data:image/jpg;base64,' + dataset.data;
+                }else{
+                    document.getElementById('msg').innerHTML = dataset.data;
+                    let msg = JSON.stringify({msg: event.data})
+                    websocket.send('from web page' + msg)
+                }
                 
-                document.getElementById('msg').innerHTML = event.data;
-                let msg = JSON.stringify({msg: event.data})
-                websocket.send('from web page' + msg)
+
+                
+                
+                
+                
             };
     
     </script>
