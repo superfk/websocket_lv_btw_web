@@ -1,59 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style>
-            html {
-                width: 100%;
-                height: 100%;
-            }
-            body {
-                width: 100%;
-                height: 100%;
-            }
-            h1{
-                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                font-size: 50px;
-                max-width: 500px;
-                margin: auto;
-                justify-content: center;
-                vertical-align: middle;
-
-            }
-
-        </style>
-
+        <link rel="stylesheet" href="w3.css">
+        <link rel="stylesheet" href="main.css">
     </head>
 
     <body>
-        <h1 id='msg'>Hello world</h1>
-        <img id='image'>
+        <main>
+            <label>連線狀態<span id='serverTime' style='margin-left:8px;font-size:16px; color:lightslategrey'> -- </span></label>
+            <div id='connStatus' class='container statusContainer'>disconnected</div>
+            
+            <div class="w3-cell-row">
+                <div class="w3-container w3-cell w3-mobile">
+                    <label>傳送給後端API</label>
+                    <div class="apiContainer" >
+                        <label >API</label>
+                        <input id='cmdAPI' class='w3-input' type="text" placeholder="API">
+                        <label >Data</label>
+                        <input id='dataAPI' class='w3-input' type="text" placeholder="Data">
+                        <p><button id='sendAPI' class="w3-button w3-border w3-green w3-hover-lightgray">送出</button></p>
+                    </div>
+                </div>
+                <div class="w3-container w3-cell w3-mobile">
+                    <label>從後端接收的原始訊息</label>
+                    <div id='revCmd' class="container cmdContainer"></div>
+                </div>
+            </div>
 
+            <label>顯示資訊</label>
+            <div id='msg' class='container msgContainer'>--</div>
+
+        </main>
 
     </body>
 
-    <script>
-
-        websocket = new WebSocket("ws://127.0.0.1:6789/");
-            
-            websocket.onmessage = function (event) {
-                let dataset = JSON.parse(event.data);
-                console.log(dataset)
-                if(dataset.state === 'image'){
-                    var image = document.getElementById('image');
-                    image.src = 'data:image/jpg;base64,' + dataset.data;
-                }else{
-                    document.getElementById('msg').innerHTML = dataset.data;
-                    let msg = JSON.stringify({msg: event.data})
-                    websocket.send('from web page' + msg)
-                }
-                
-
-                
-                
-                
-                
-            };
-    
-    </script>
+    <script src="main.js"></script>
 
 </html>

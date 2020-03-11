@@ -1,0 +1,53 @@
+html, body {
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    display: block;
+}
+main{
+    width: 95%;
+}
+.container{
+    background-color: white;
+    color:black;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 8px;
+    padding: 5px;
+    overflow-y: auto;
+    overflow-wrap:break-word;
+    border-bottom: 1px solid lightgray;
+}
+label{
+    margin: 8px;
+}
+.statusContainer{
+    background-color: red;
+    color:rgb(233, 233, 233);
+    height: 50px;
+}
+.connOK{
+    background-color: greenyellow;
+    color:rgb(36, 34, 34);
+}
+.cmdContainer{
+    border: 1px solid lightgray;
+    height: 200px;
+    padding:8px;
+    font-size: 20px;
+}
+.apiContainer{
+    border: 1px solid lightgray;
+    height: 200px;
+    font-size: medium;
+    padding:8px;
+}
+.msgContainer{
+    border: 1px solid lightgray;
+    height: 400px;
+}
+.msgContainer img{
+    max-height: 300px;
+}
