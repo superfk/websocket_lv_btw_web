@@ -1,13 +1,18 @@
 let connText = document.getElementById('connStatus');
 let serverTimeText = document.getElementById('serverTime');
+let apiList = document.getElementById('apiList');
 let cmdText = document.getElementById('revCmd');
-let dataText = document.getElementById('msg')
+let dataText = document.getElementById('msg');
 
-let cmdAPI = document.getElementById('cmdAPI')
-let dataAPI = document.getElementById('dataAPI')
-let sendAPI = document.getElementById('sendAPI')
+let cmdAPI = document.getElementById('cmdAPI');
+let dataAPI = document.getElementById('dataAPI');
+let sendAPI = document.getElementById('sendAPI');
 
 let ws;        
+
+//############################################
+// websocket handler                        ##
+//############################################
 
 function connect() {
 
@@ -27,6 +32,12 @@ function connect() {
             switch(cmd){
                 case 'getServerTime':
                     serverTimeText.innerHTML = data;
+                    break;
+                case 'reply_api':
+                    genAPI(data);
+                    break;
+                case 'reply_getServerTime':
+                    dataText.innerHTML = data;
                     break;
                 case 'echo':
                     dataText.innerHTML = data;
@@ -65,18 +76,39 @@ function connect() {
 
 connect();
 
+//############################################
+// event listener                           ##
+//############################################
+
+sendAPI.addEventListener('click', ()=>{
+    let msg = JSON.stringify({cmd:cmdAPI.value, data:dataAPI.value})
+    ws.send(msg);
+})
+
+//############################################
+// functions                                ##
+//############################################
 function handleConn(conn=false){
     if (conn){
         connText.classList.remove('connOK');
         connText.classList.add('connOK');
         connText.innerText = 'connected'
+        // request API list
+        let msg = JSON.stringify({cmd:'get_api', data:''})
+        ws.send(msg);
     }else{
         connText.classList.remove('connOK');
         connText.innerText = 'disconnected'
     }
 }
 
-sendAPI.addEventListener('click', ()=>{
-    let msg = JSON.stringify({cmd:cmdAPI.value, data:dataAPI.value})
-    ws.send(msg);
-})
+function genAPI(apiString){
+    let api_list = apiString.split(',');
+    let createAPI = '';
+    api_list.forEach(element => {
+        createAPI+=`<li>${element}</li>`
+    });
+
+    apiList.innerHTML = createAPI;
+
+}

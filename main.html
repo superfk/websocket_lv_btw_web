@@ -12,6 +12,12 @@
             
             <div class="w3-cell-row">
                 <div class="w3-container w3-cell w3-mobile">
+                    <label>API list</label>
+                    <div class="apiListContainer">
+                        <ul id='apiList'></ul>
+                    </div>
+                </div>
+                <div class="w3-container w3-cell w3-mobile">
                     <label>傳送給後端API</label>
                     <div class="apiContainer" >
                         <label >API</label>
@@ -28,7 +34,9 @@
             </div>
 
             <label>顯示資訊</label>
-            <div id='msg' class='container msgContainer'>--</div>
+            <div class='container' style='min-height: 200px;'>
+                <div id='msg' class='msgContainer'></div>
+            </div>
 
         </main>
 
