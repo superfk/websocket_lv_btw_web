@@ -6,20 +6,21 @@
     </head>
 
     <body>
+        <header>
+            <div>WebSockect Tester with LabVIEW Server</div>
+        </header>
         <main>
-            <label>連線狀態<span id='serverTime' style='margin-left:8px;font-size:16px; color:lightslategrey'> -- </span></label>
-            <div id='connStatus' class='container statusContainer'>disconnected</div>
             
-            <div class="w3-cell-row">
-                <div class="w3-container w3-cell w3-mobile">
+            <div class='row'>
+                <div class="column one">
                     <label>API list</label>
-                    <div class="apiListContainer">
-                        <ul id='apiList'></ul>
+                    <div>
+                        <ul id='apiList' class='apiList'></ul>
                     </div>
                 </div>
-                <div class="w3-container w3-cell w3-mobile">
+                <div class="column one">
                     <label>傳送給後端API</label>
-                    <div class="apiContainer" >
+                    <div>
                         <label >API</label>
                         <input id='cmdAPI' class='w3-input' type="text" placeholder="API">
                         <label >Data</label>
@@ -27,18 +28,24 @@
                         <p><button id='sendAPI' class="w3-button w3-border w3-green w3-hover-lightgray">送出</button></p>
                     </div>
                 </div>
-                <div class="w3-container w3-cell w3-mobile">
+                <div class="column two">
                     <label>從後端接收的原始訊息</label>
-                    <div id='revCmd' class="container cmdContainer"></div>
+                    <div id='revCmd'></div>
                 </div>
             </div>
 
-            <label>顯示資訊</label>
-            <div class='container' style='min-height: 200px;'>
-                <div id='msg' class='msgContainer'></div>
+            <div class='row'>
+                <div class="column one">
+                    <label>顯示資訊</label>
+                    <div id='msg'></div>
+                </div>
             </div>
 
         </main>
+        <footer>
+            <div id='serverTime' class='timeContainer'>--</div>
+            <div id='connStatus' class='statusContainer'>disconnected</div>
+        </footer>
 
     </body>
 
