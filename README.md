@@ -8,3 +8,13 @@ How to run:
 
 Let's it
 
+# websocket-labview-communication
+this project shows how to send message between LabVIEW and Browser with WebSocket.
+
+## How to Run
+  <ol>run "lv_server.vi" first.
+  <ol>open "main.html"
+
+## Setup
+### LabVIEW
+  LabVIEW 2018

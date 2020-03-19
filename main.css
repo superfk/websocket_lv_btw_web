@@ -97,6 +97,17 @@ footer div{
     text-align: center;
 }
 
+.msgContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.msgContainer > img {
+    max-width: 400px;
+    max-height: 400px;
+}
+
 @media screen and (max-width: 600px){
     footer{
         height: 100px;
